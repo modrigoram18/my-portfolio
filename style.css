@@ -1,0 +1,1531 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #6366f1; 
+    --card-bg: #f8fafc;
+}
+
+/* NEW INDUSTRIAL DARK MODE */
+[data-theme="dark"] {
+    --bg-color: #121417;      /* Deep Slate/Charcoal */
+    --text-color: #e2e8f0;    /* Soft Platinum */
+    --accent-color: #818cf8;  /* Indigo Accent */
+    --card-bg: #1c1f24;       /* Gunmetal Grey */
+    --nav-bg: rgba(18, 20, 23, 0.9);
+}
+
+/* MILESTONE SLIDER STYLES */
+.milestone-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.timeline-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.timeline-slide {
+    min-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.timeline-card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    border-left: 5px solid var(--accent-color);
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.slider-btn {
+    position: absolute;
+    right: 10px;
+    z-index: 10;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.slider-btn:hover { transform: scale(1.1); }
+.slider-btn.prev { left: 10px; right: auto; }
+
+/* Default Dark Mode (Forces dark on load as requested) */
+[data-theme="dark"] {
+    --bg-color: #0f172a;
+    --text-color: #f1f5f9;
+    --accent-color: #818cf8;
+    --card-bg: #1e293b;
+    --nav-bg: rgba(15, 23, 42, 0.9);
+}
+
+/* --- 2. BASE RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- 3. SECTION VISIBILITY FIX --- */
+/* Sections are visible by default. Animation is handled via .reveal classes */
+.section {
+    padding: 100px 0;
+    width: 100%;
+    position: relative;
+    opacity: 1; /* Always visible by default */
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.highlight {
+    color: var(--accent-color);
+}
+
+/* Optional Reveal Animation (only triggers if JS adds .fade-in) */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.reveal.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 4. NAVBAR & CATCHY LOGO --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    z-index: 1000;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo span {
+    color: var(--accent-color);
+    font-weight: 300;
+}
+
+.gear-icon {
+    font-size: 1.2rem;
+    margin-right: 10px;
+    color: var(--accent-color);
+    animation: rotateGear 5s linear infinite;
+    display: inline-block;
+}
+
+@keyframes rotateGear {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover { color: var(--accent-color); }
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+/* --- 5. HERO SECTION --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero h1 { font-size: 4rem; margin-bottom: 0.2rem; line-height: 1.1; }
+.full-name { 
+    font-size: 1.5rem; 
+    font-weight: 300; 
+    letter-spacing: 4px; 
+    text-transform: uppercase; 
+    opacity: 0.8; 
+    margin-bottom: 2rem; 
+}
+.subtitle { font-size: 1.2rem; opacity: 0.7; margin-bottom: 2.5rem; }
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    background: var(--accent-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
+
+/* --- 6. ABOUT SECTION (VERTICAL STACK) --- */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#about-text {
+    max-height: 140px; 
+    overflow: hidden;
+    transition: max-height 0.7s ease;
+    width: 100%;
+    text-align: center;
+    max-width: 800px;
+}
+
+#about-text.expanded {
+    max-height: 1500px; 
+}
+
+.sub-header {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.about-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+    width: 200px;
+    margin: 2.5rem auto;
+    opacity: 0.3;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+
+/* --- 7. MILESTONES (TIMELINE) --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding-left: 2rem;
+    border-left: 2px solid var(--accent-color);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -2.6rem;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    border: 3px solid var(--bg-color);
+}
+
+.timeline-date {
+    font-weight: 700;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+}
+
+.timeline-content h3 { font-size: 1.25rem; margin-bottom: 0.2rem; }
+.timeline-content h4 { font-size: 1rem; opacity: 0.8; margin-bottom: 0.5rem; font-weight: 400; }
+
+/* --- 8. SKILLS & PROJECTS --- */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers the row of 4 cards */
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.skill-card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 180px; /* Slightly wider for longer software names */
+    min-height: 150px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-bottom: 3px solid transparent;
+}
+
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-bottom: 3px solid var(--accent-color);
+}
+
+.skill-card i {
+    font-size: 2.2rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.skill-card p {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.sub-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- 9. CONTACT & FOOTER --- */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--card-bg);
+    border: 1px solid rgba(128,128,128,0.2);
+    color: var(--text-color);
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.social-links { display: flex; gap: 1.5rem; margin-top: 1rem; }
+.social-links a { font-size: 1.5rem; color: var(--text-color); transition: var(--transition); }
+.social-links a:hover { color: var(--accent-color); }
+
+footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    opacity: 0.7;
+    border-top: 1px solid rgba(128,128,128,0.1);
+}
+
+#scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: none;
+    z-index: 1000;
+}
+
+/* --- 10. RESPONSIVE --- */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.8rem; }
+    .full-name { font-size: 1.2rem; }
+}
+/* Company Name Styling */
+.company-name {
+    font-size: 0.95rem; /* Lowered font size */
+    font-style: italic; /* Italicized */
+    font-weight: 400;
+    opacity: 0.85;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+}
+
+/* Progress Dots & Line */
+.timeline-progress-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    height: 4px;
+}
+
+.progress-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 2px;
+    width: 100%;
+    background: rgba(128, 128, 128, 0.2);
+    z-index: 1;
+}
+
+.dots-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    z-index: 2;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: var(--card-bg);
+    border: 2px solid rgba(128, 128, 128, 0.4);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+    transform: scale(1.3);
+}
+/* Container for Company and Date */
+/* --- STACKED METADATA (CENTERED) --- */
+.card-meta {
+    display: flex;
+    flex-direction: column;    /* Stacks elements vertically */
+    align-items: center;       /* Centers company and date horizontally */
+    justify-content: center;   /* Ensures vertical alignment is tight */
+    gap: 4px;                  /* Small space between company and date */
+    margin: 5px 0 20px 0;      /* Space between the Title and the Description */
+    width: 100%;
+}
+
+.company-name {
+    font-size: 1.05rem;
+    font-style: italic;         /* Italicized as requested */
+    color: var(--accent-color);
+    margin: 0;                  /* Removes any inherited heading margins */
+    line-height: 1.2;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    font-weight: 600;           /* Bolded for contrast */
+    opacity: 0.75;              /* Slightly softer than company name */
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Hide the divider since we are now using a stacked layout */
+.meta-divider {
+    display: none;
+}
+
+/* Mobile Fix: Stack them when the screen is too narrow for three columns */
+@media (max-width: 600px) {
+    .card-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+    .meta-divider {
+        display: none;
+    }
+    .company-name, .timeline-date {
+        text-align: center;
+        justify-self: center;
+    }
+}
+/* Mobile Fix: If the screen is too small, they will stack neatly */
+@media (max-width: 600px) {
+    .card-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .meta-divider {
+        display: none; /* Hide the vertical line on mobile stacks */
+    }
+}
+
+.company-name {
+    font-size: 0.95rem;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-color);
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.meta-divider {
+    opacity: 0.4;
+}
+
+/* Adjust card border for centered look */
+.timeline-card {
+    border-left: none; /* Removed the left border */
+    border-bottom: 4px solid var(--accent-color); /* Added a bottom accent line instead */
+    padding: 40px;
+    background: var(--card-bg);
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+.section-divider {
+    width: 100%;
+    max-width: 800px;         /* Limits the width for a cleaner look */
+    height: 1px;               /* Thin, elegant line */
+    margin: 4rem auto;         /* Centers it and provides vertical breathing room */
+    background: linear-gradient(
+        to right, 
+        transparent, 
+        var(--accent-color),   /* Uses your Indigo/Blue accent */
+        transparent
+    );
+    opacity: 0.4;              /* Makes it subtle like the image */
+}
+/* Tab Container */
+.skills-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+/* Individual Header Buttons */
+.tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 20px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tab-btn:hover {
+    opacity: 0.8;
+}
+
+.tab-btn.active {
+    opacity: 1;
+    color: var(--accent-color);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+/* Hide content by default */
+.tab-content {
+    display: none;
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+/* Show active content */
+.tab-content.active {
+    display: block;
+}
+
+/* Expansion Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.skills-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 3rem;
+}
+
+/* The Bubble Buttons */
+.bubble-btn {
+    background: var(--card-bg);
+    border: 2px solid rgba(128, 128, 128, 0.2);
+    color: var(--text-color);
+    padding: 12px 25px;
+    border-radius: 50px; /* Full pill/bubble shape */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.bubble-btn:hover {
+    transform: scale(1.05);
+    border-color: var(--accent-color);
+}
+
+.bubble-btn.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* Hidden Content Logic */
+.tab-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.tab-content.active {
+    max-height: 1000px; /* Large enough to fit content */
+    opacity: 1;
+    margin-top: 2rem;
+}
+/* Container for the Stack */
+.skills-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Centers bubbles horizontally */
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto;           /* Centers the whole stack on the page */
+}
+
+/* Group and Button Styling */
+.bubble-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Centers the button and the grid below it */
+}
+
+.bubble-btn {
+    background: var(--card-bg);
+    border: 2px solid rgba(128, 128, 128, 0.3);
+    color: var(--text-color);
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    max-width: 450px;         /* Limits bubble width for a cleaner look */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Irresistible Pulse for Non-Active Bubbles */
+.bubble-btn:not(.active) {
+    animation: bubblePulse 3s infinite;
+}
+
+/* The Content Grid (Centered) */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* Centers the cards within the row */
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.tab-content {
+    width: 100%;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    max-height: 1200px;
+    opacity: 1;
+    padding: 30px 0;          /* Adds space around the centered boxes */
+}
+
+/* Animations */
+@keyframes bubblePulse {
+    0% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(129, 140, 248, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(129, 140, 248, 0); }
+}
+/* --- UNIFORM BUBBLES --- */
+.bubble-btn {
+    width: 450px;             /* Forces all bubbles to be the same width */
+    max-width: 90vw;
+    height: 60px;             /* Forces all bubbles to be the same height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;           /* Centers the button itself */
+    /* ... keep your other transition/border styles ... */
+}
+
+/* --- THE FIX: FORCED COLLAPSE --- */
+.software-list {
+    max-height: 0 !important; /* Forces it to stay closed */
+    opacity: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none;     /* Prevents clicking invisible items */
+    transition: all 0.4s ease;
+    list-style: none;
+    padding: 0;
+}
+
+/* --- THE FIX: FORCED EXPANSION --- */
+.skill-card.expanded .software-list {
+    max-height: 300px !important; /* Opens it */
+    opacity: 1 !important;
+    pointer-events: auto;
+    margin-top: 15px;
+}
+
+/* Make the box look clickable */
+.skill-card.clickable {
+    border: 2px dashed rgba(129, 140, 248, 0.4);
+    cursor: pointer;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* --- UNIFORM BUBBLES --- */
+.bubble-btn {
+    width: 450px;             /* Forces all bubbles to be the same width */
+    max-width: 90vw;
+    height: 60px;             /* Forces all bubbles to be the same height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;           /* Centers the button itself */
+    /* ... keep your other transition/border styles ... */
+}
+
+/* --- THE FIX: FORCED COLLAPSE --- */
+.software-list {
+    max-height: 0 !important; /* Forces it to stay closed */
+    opacity: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none;     /* Prevents clicking invisible items */
+    transition: all 0.4s ease;
+    list-style: none;
+    padding: 0;
+}
+
+/* --- THE FIX: FORCED EXPANSION --- */
+.skill-card.expanded .software-list {
+    max-height: 300px !important; /* Opens it */
+    opacity: 1 !important;
+    pointer-events: auto;
+    margin-top: 15px;
+}
+
+/* Make the box look clickable */
+.skill-card.clickable {
+    border: 2px dashed rgba(129, 140, 248, 0.4);
+    cursor: pointer;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* Styling for the small logos inside the lists */
+.software-list li i {
+    font-size: 0.9rem;
+    margin-right: 8px;
+    color: var(--accent-color); /* Matches your indigo theme */
+    width: 15px; /* Ensures text stays aligned vertically */
+    text-align: center;
+}
+
+/* Adjusting the list items for better alignment */
+.software-list li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns logos and text to the left within the center-aligned box */
+    padding: 6px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    margin: 4px 0;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: background 0.3s ease;
+}
+
+.software-list li:hover {
+    background: rgba(129, 140, 248, 0.1); /* Subtle highlight on hover */
+}
+
+/* Ensure the main icon stays centered and large */
+.main-icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+/* --- SOFTWARE LIST ALIGNMENT --- */
+.software-list li {
+    display: flex;
+    align-items: center;      /* Vertically centers icon with text */
+    justify-content: center;   /* Horizontally centers the whole line */
+    gap: 10px;                 /* Space between logo and text */
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.03);
+    margin: 6px 0;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    width: 100%;               /* Ensures background spans the card width */
+}
+
+.software-list li i {
+    font-size: 1rem;
+    color: var(--accent-color);
+    width: 20px;               /* Fixed width for icons to keep text aligned */
+    text-align: center;
+}
+
+/* --- CLICKABLE CARD REFINEMENT --- */
+.skill-card.clickable {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* Centers header content */
+    justify-content: center;
+    transition: all 0.4s ease;
+    min-height: 150px;
+}
+
+.skill-card.expanded {
+    min-height: auto;         /* Allows card to grow naturally */
+    padding-bottom: 20px;
+}
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 80px 0;
+}
+
+.hero-content {
+    flex: 1;
+    text-align: left; /* Changes from center to left for the split view */
+}
+
+.hero-image-wrapper {
+    position: relative;
+    flex: 0 0 350px; /* Fixed size for the photo area */
+    display: flex;
+    justify-content: center;
+}
+
+.profile-pic {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%; /* Clean circular look */
+    object-fit: cover;
+    border: 4px solid var(--card-bg, #1a1a1a);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+}
+
+/* Matching the glow from your timeline dots */
+.profile-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    background: #818cf8; /* Matching your indigo highlight color */
+    filter: blur(50px);
+    opacity: 0.2;
+    border-radius: 50%;
+    z-index: 1;
+    top: -10px;
+}
+
+/* Responsive adjustment for mobile */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .hero-content {
+        text-align: center;
+    }
+    .hero-image-wrapper {
+        flex: 0 0 auto;
+    }
+}
+/* Container Layout */
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 100px 0;
+}
+
+/* Slider Wrapper */
+.hero-slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-slider {
+    width: 320px;
+    height: 320px;
+    position: relative;
+    z-index: 5;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #111827; /* Matches your dark background */
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.hero-img.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 6;
+}
+
+/* Navigation Arrows */
+.hero-nav {
+    background: rgba(129, 140, 248, 0.1);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.hero-nav:hover {
+    background: #818cf8;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(129, 140, 248, 0.5);
+}
+
+/* Background Glow */
+.profile-glow {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: #818cf8;
+    filter: blur(70px);
+    opacity: 0.15;
+    border-radius: 50%;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .hero-container {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .hero-slider {
+        width: 250px;
+        height: 250px;
+    }
+}
+.project-card {
+    flex: 0 0 380px;
+    background: #111827;
+    border: 1px solid rgba(129, 140, 248, 0.2);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden; /* Clips the scaling image */
+    text-decoration: none;
+    color: white;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Background Image Placeholder - Replace URLs with your project photos */
+.project-img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Keeps it subtle */
+    transition: transform 0.8s ease, opacity 0.5s ease;
+    z-index: 1;
+}
+
+/* Add specific images here */
+.project-card:nth-child(1) .project-img-overlay { background-image: url('subway-bg.jpg'); }
+.project-card:nth-child(2) .project-img-overlay { background-image: url('victoria-bg.jpg'); }
+.project-card:nth-child(3) .project-img-overlay { background-image: url('mdc-bg.jpg'); }
+
+.project-content {
+    position: relative;
+    z-index: 2; /* Sits above the image */
+    padding: 40px;
+}
+
+/* THE POP EFFECT */
+.project-card:hover {
+    transform: scale(1.05);
+    border-color: #818cf8;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.project-card:hover .project-img-overlay {
+    transform: scale(1.15); /* Zooms image slightly on hover */
+    opacity: 0.5; /* Brightens on hover */
+}
+
+.project-icon {
+    font-size: 2.2rem;
+    color: #818cf8;
+    margin-bottom: 20px;
+}
+
+.project-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #818cf8;
+    background: rgba(129, 140, 248, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+    margin-bottom: 15px;
+}
+.project-slider-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 0;
+}
+
+.project-display {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* Adjust based on your preferred card size */
+    height: 400px;    /* Fixed height to prevent jumping */
+}
+
+.project-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--card-bg, #111827);
+    border: 2px solid rgba(129, 140, 248, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+    /* The Pop-Out Logic */
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+    z-index: 10;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border-color: var(--accent-color, #818cf8);
+}
+
+/* Click to know more styling */
+.click-more {
+    margin-top: 20px;
+    font-size: 0.7rem;          /* Reduced from 0.8rem/0.85rem */
+    color: #818cf8;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1.5px;      /* Increased spacing for better readability at small sizes */
+    opacity: 0.6;               /* Slightly more faded until hover */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Hover effect to make it pop only when relevant */
+.project-card:hover .click-more {
+    opacity: 1;
+    letter-spacing: 2px;        /* Subtle expansion effect on hover */
+}
+
+.click-more i {
+    font-size: 0.65rem;         /* Ensures the external link icon matches the text */
+}
+
+/* Nav Buttons */
+.slider-nav {
+    background: rgba(129, 140, 248, 0.1);
+    border: 1px solid rgba(129, 140, 248, 0.3);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-nav:hover {
+    background: var(--accent-color, #818cf8);
+    transform: scale(1.1);
+}
+/* Gallery Styles */
+.project-gallery-wrapper {
+    margin-top: 15px;
+}
+
+.expand-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    color: #555;
+}
+
+.expand-btn:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+.expand-btn i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* The magic for hiding/showing */
+.gallery-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.gallery-content.active {
+    max-height: 500px; /* Adjust based on photo size */
+    opacity: 1;
+    margin-top: 15px;
+}
+
+.expand-btn.active i {
+    transform: rotate(180deg);
+}
+
+/* Simple grid for the photos */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 10px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+}
+/* Container for the hidden gallery */
+.gallery-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-content.active {
+    max-height: 600px; /* Increased to accommodate taller photos */
+    opacity: 1;
+    margin-top: 25px;
+    padding-bottom: 20px;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.carousel-viewport {
+    width: 100%; 
+    overflow: hidden;
+    border-radius: 12px;
+    /* Adds a subtle shadow so the edge of the "window" looks clean */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 15px;
+    /* transition is now handled by JS for the 'snap' effect */
+    will-change: transform;
+}
+
+.carousel-img {
+    /* (100% / 3) - (gap adjustment) */
+    flex: 0 0 calc(33.333% - 10px); 
+    height: 280px; /* INCREASED HEIGHT: from 150px to 280px */
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+.carousel-img:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Arrow Styling - Made them slightly larger to match the bigger photos */
+.mini-arrow {
+    background: rgba(38, 44, 62, 0.8);
+    color: white;
+    border: 1px solid #444;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.mini-arrow:hover {
+    background: #3d4663;
+    border-color: #fff;
+    transform: scale(1.1);
+}
+/* Styling the "Hero Slider" or "Projects" Arrows specifically */
+.hero-arrow, /* Or use your specific class for these arrows */
+.mini-arrow,
+#prevBtn, 
+#nextBtn {
+    /* Step 1: Remove all default button styling (this fixes the white box) */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    
+    /* Step 2: Styling the new "circle" modern look */
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle dark-theme transparency */
+    color: #e0e0e0; /* Modern off-white chevron color */
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border matching background */
+    
+    border-radius: 50%; /* Circle shape */
+    
+    width: 45px; /* Perfect size for modern usability */
+    height: 45px;
+    
+    /* Step 3: Aligning the chevron inside the circle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 1.1rem; /* Adjust chevron size */
+    
+    /* Step 4: Adding smooth transitions and shadows for depth */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Step 5: Critical step to ensure FontAwesome icons align properly */
+    padding: 0;
+}
+
+/* SLEEK HOVER STATE */
+.hero-arrow:hover,
+.mini-arrow:hover,
+#prevBtn:hover,
+#nextBtn:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Brightens the circle */
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff; /* Chevron turns pure white */
+    
+    transform: scale(1.08); /* Small modern zoom effect */
+    
+    /* Optional: Subtle glow to match a dark theme */
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.1); 
+}
+
+/* Ensure the FontAwesome icon inside doesn't move */
+.hero-arrow i, 
+.mini-arrow i, 
+#prevBtn i, 
+#nextBtn i {
+    pointer-events: none; /* Helps with hover detection */
+    transition: 0.3s;
+}
+.dot.active {
+    background-color: var(--accent-color); /* or your preferred highlight color */
+    transform: scale(1.2);
+    opacity: 1;
+}
+/* Success Message Styling */
+.form-status-hidden {
+    display: none;
+    margin-top: 15px;
+    padding: 12px;
+    background: rgba(76, 175, 80, 0.2); /* Soft Green */
+    color: #4caf50;
+    border: 1px solid #4caf50;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-status-show {
+    display: block;
+    margin-top: 15px;
+    padding: 12px;
+    background: rgba(76, 175, 80, 0.2);
+    color: #4caf50;
+    border: 1px solid #4caf50;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Optional: Improve the Send button hover */
+#submit-btn:hover {
+    background-color: #5a78ff; /* A slightly different blue */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+.contact-container {
+    display: flex;
+    justify-content:间-between;
+    align-items: flex-start;
+    gap: 40px; /* Space between form and info */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-form {
+    flex: 1; /* Takes up the left side */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-info {
+    flex: 0 0 300px; /* Keeps the right side at a fixed width */
+    text-align: left;
+}
+
+/* Fix for mobile - stacks them on top of each other */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+    }
+    .contact-info {
+        flex: 1;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+.linkedin-link {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and text */
+    text-decoration: none;
+    color: inherit; /* Matches your text color */
+    transition: color 0.3s ease;
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+.linkedin-link i {
+    font-size: 1.5rem; /* Makes the logo slightly larger than the text */
+}
+
+.linkedin-link:hover {
+    color: #0077b5; /* Official LinkedIn Blue on hover */
+}
+/* This makes the link look and act exactly like the text above it */
+.contact-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+.contact-link:hover {
+    opacity: 0.8; /* Subtle change on hover without shifting layout */
+}
+@media (max-width: 768px) {
+    .roadmap-container {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+    }
+    .roadmap-text {
+        text-align: center !important;
+    }
+}
