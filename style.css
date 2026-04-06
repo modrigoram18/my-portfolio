@@ -1584,3 +1584,44 @@ footer {
     max-height: 2000px !important; /* Set a very large height to allow full expansion */
     opacity: 1;
 }
+/* FORCE the project card to be wide and readable on mobile */
+@media (max-width: 600px) {
+    .project-card, 
+    .swiper-slide, 
+    .slick-slide { 
+        width: 85vw !important; /* Forces it to be 85% of screen width */
+        max-width: 350px !important;
+        height: auto !important;
+        min-height: 400px !important;
+        margin: 0 auto !important;
+        padding: 30px 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+    }
+
+    .project-card p, 
+    .project-card h3 {
+        width: 100% !important;
+        white-space: normal !important; /* Stops the single-word stacking */
+        overflow: visible !important;
+        font-size: 1rem !important;
+        line-height: 1.6 !important;
+    }
+}
+/* Fix the visibility for expanded content */
+.off-duty-content {
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* This class MUST be added by your JavaScript when you click Show More */
+.off-duty-content.active, 
+.off-duty-content.show {
+    display: block !important;
+    opacity: 1 !important;
+    height: auto !important;
+    max-height: none !important;
+    visibility: visible !important;
+}
