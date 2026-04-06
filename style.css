@@ -1529,3 +1529,28 @@ footer {
         text-align: center !important;
     }
 }
+/* Fix for Featured Projects Mobile Alignment */
+@media (max-width: 768px) {
+    /* Ensure the container stacks vertically on phones */
+    .projects-container, .project-grid { 
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px !important;
+        padding: 10px !important;
+    }
+
+    /* Ensure each project card takes up full width minus some margin */
+    .project-card {
+        width: 90% !important; 
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Ensure images don't overflow the screen */
+    .project-card img {
+        width: 100% !important;
+        height: auto !important;
+    }
+}
